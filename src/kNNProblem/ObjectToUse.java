@@ -2,13 +2,13 @@ package kNNProblem;
 
 public class ObjectToUse {
 
-	double A;
-	double B;
-	double C;
-	double D;
-	String expertFlag;
-	String knnFlag;
-	double[] distance;
+	public double A;
+	public double B;
+	public double C;
+	public double D;
+	public String expertFlag;
+	public String knnFlag;
+	public double[] distance;
 	
 	public ObjectToUse(){
 		
