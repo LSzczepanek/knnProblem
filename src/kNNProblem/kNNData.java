@@ -11,8 +11,8 @@ public class kNNData {
 	public double D;
 	public String expertFlag;
 	public String knnFlag;
-	public double[] distance;
-	Map<Integer, Double> testDistannce;
+//	public double[] distance;
+	Map<Integer, Double> distanceList;
 	public int[] closest;
 	
 	public kNNData(){
@@ -25,8 +25,8 @@ public class kNNData {
 		this.C = C;
 		this.D = D;
 		this.expertFlag = expertFlag;
-		this.distance = new double[sizeOfTable];
-		testDistannce = new LinkedHashMap<Integer, Double>();
+//		this.distance = new double[sizeOfTable];
+		distanceList = new LinkedHashMap<Integer, Double>();
 	}
 	
 	String getExpertFlag(){

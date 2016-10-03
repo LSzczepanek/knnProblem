@@ -9,10 +9,10 @@ public class KNNAlgorythm {
 		for (int i = 0; i < listOfObjects.length; i++) {
 			for (int j = 0; j < listOfObjects.length; j++) {
 				if (i == j) {
-					listOfObjects[i].testDistannce.put(null, (double) 0);
+					listOfObjects[i].distanceList.put(null, (double) 0);
 					continue;
 				}
-				listOfObjects[i].testDistannce.put(j,
+				listOfObjects[i].distanceList.put(j,
 						KNNAlgorythm.calculateEuklidesDistance(listOfObjects[i], listOfObjects[j]));
 			}
 			getLowestforObject(listOfObjects[i], 3);
@@ -35,8 +35,8 @@ public class KNNAlgorythm {
 		int testValueToBreak = 0;
 		int valueForClosest = 0;
 		Objects.closest = new int[kValue];
-		Objects.testDistannce = MapUtil.sortByValue(Objects.testDistannce);
-		for (Map.Entry entry : (Objects.testDistannce.entrySet())) {
+		Objects.distanceList = MapUtil.sortByValue(Objects.distanceList);
+		for (Map.Entry entry : (Objects.distanceList.entrySet())) {
 			if (testValueToBreak == kValue) {
 				break;
 			}
