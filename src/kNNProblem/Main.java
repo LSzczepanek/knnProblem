@@ -46,10 +46,12 @@ public class Main {
 		System.out.println(testFiles[0].testDistannce);
 		// testFiles[0].testDistannce =
 		// MapUtil.sortByValue(testFiles[0].testDistannce);
-		System.out.println(testFiles[0].testDistannce);
-		for (int k : testFiles[0].closest) {
+		System.out.println(testFiles[16].testDistannce);
+		for (int k : testFiles[16].closest) {
 			System.out.println("Wartosc najblizsza: " + k);
-			System.out.println("Wartosc flagi: " + testFiles[0].expertFlag);
+			System.out.println("Wartosc flagi eksperckiej: " + testFiles[16].expertFlag);
+			System.out.println("Wartosc flagi kNN: " + testFiles[16].knnFlag);
+			System.out.println(KNNAlgorythm.checkPrecision(testFiles));
 		}
 
 		// Map<Integer, Double> testDistannce=new TreeMap<Integer, Double>();

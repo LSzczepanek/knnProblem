@@ -29,10 +29,40 @@ public class kNNData {
 		testDistannce = new LinkedHashMap<Integer, Double>();
 	}
 	
-	void calculateDistance(){
-		
+	String getExpertFlag(){
+		return expertFlag;
 	}
 	
+	String getKNNFlag(){
+		return knnFlag;
+	}
+	
+	
+	void giveFlag(kNNData[] Objects) {
+		int K_Flag = 0;
+		int Z_Flag = 0;
+		double sumK;
+		double sumZ;
+		for (int i = 0; i < closest.length; i++) {
+			if (Objects[closest[i]].expertFlag.equals("K")) {
+				K_Flag++;
+			} else {
+				Z_Flag++;
+			}
+
+		}
+		sumK = (double) (K_Flag / closest.length) * 100;
+		sumZ = (double) (Z_Flag / closest.length) * 100;
+		
+		if(sumK > 50){
+			knnFlag = "K";
+		}else if (sumZ > 50){
+			knnFlag = "Z";
+		}else {
+			knnFlag = "Nie do okreslenia";
+		}
+
+	}
 	
 	@Override
 	public String toString() {

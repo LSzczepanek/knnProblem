@@ -1,6 +1,6 @@
 package kNNProblem;
 
-import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Map;
 
 public class KNNAlgorythm {
@@ -20,6 +20,7 @@ public class KNNAlgorythm {
 						KNNAlgorythm.calculateEuklidesDistance(listOfObjects[i], listOfObjects[j]));
 			}
 			getLowestforObject(listOfObjects[i], 3);
+			listOfObjects[i].giveFlag(listOfObjects);
 		}
 
 	}
@@ -43,15 +44,49 @@ public class KNNAlgorythm {
 			if (testValueToBreak == kValue) {
 				break;
 			}
-			if(entry.getKey() == null){
+			if (entry.getKey() == null) {
 				continue;
-			}
-			else {
+			} else {
 				Objects.closest[valueForClosest] = (int) entry.getKey();
 				valueForClosest++;
 			}
-			//System.out.println(entry.getKey() + ", " + entry.getValue());
+			// System.out.println(entry.getKey() + ", " + entry.getValue());
 			testValueToBreak++;
 		}
 	}
+
+	static String checkPrecision(kNNData[] listOfObjects) {
+
+		int generalPrecision = 0;
+		int firstFlag = 0;
+		int secondFlag = 0;
+		int finalGeneralPrecision = 0;
+		int finalFirstFlagPrecision = 0;
+		int finalSecomdFlagPrecision = 0;
+		HashSet<String> listOfFlag = new HashSet<String>();
+		for (kNNData Object : listOfObjects) {
+			listOfFlag.add(Object.expertFlag);
+		}
+		System.out.println("Iloœæ flag to: "+listOfFlag.size());
+	
+		for (kNNData Object : listOfObjects) {
+			if (Object.expertFlag.equals(Object.knnFlag)) {
+				generalPrecision++;
+			}
+			if (Object.expertFlag.equals("K")) {
+				firstFlag++;
+				
+			}
+			if (Object.expertFlag.equals("Z")) {
+				secondFlag++;
+			}
+			finalGeneralPrecision = (generalPrecision / listOfObjects.length) * 100;
+			finalFirstFlagPrecision = (generalPrecision / listOfObjects.length) * 100;
+			finalSecomdFlagPrecision = (generalPrecision / listOfObjects.length) * 100;
+		}
+
+		return "Ostateczna, pelna precyzja to: " + finalGeneralPrecision;
+
+	}
+
 }
