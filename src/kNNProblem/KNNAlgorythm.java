@@ -1,5 +1,6 @@
 package kNNProblem;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Map;
 
@@ -51,34 +52,70 @@ public class KNNAlgorythm {
 		}
 	}
 
+	
+	
+	
+	static ArrayList<String> getListOfFlag(kNNData[] listOfObjects){
+		HashSet<String> getTheFlags = new HashSet<String>();
+
+		for (kNNData Object : listOfObjects) {
+			getTheFlags.add(Object.expertFlag);
+		}
+
+		ArrayList<String> listOfFlag = new ArrayList<>(getTheFlags);
+		
+
+		
+		return listOfFlag;
+		
+	}
+	
+	
+	static int[] getAmountOfFlag(kNNData[] listOfObjects, ArrayList<String> listOfFlag){
+		int[] amountOfFlag = new int[listOfFlag.size()];
+		for (int i = 0; i < listOfObjects.length; i++) {
+			for (int j = 0; j < listOfFlag.size(); j++) {
+				if (listOfObjects[i].expertFlag.equals(listOfFlag.get(j))) {
+					amountOfFlag[j] += 1;
+				}
+			}
+
+		}
+		return amountOfFlag;
+	}
+	
+	
+	
 	static String checkPrecision(kNNData[] listOfObjects) {
 
 		int generalPrecision = 0;
-		int firstFlag = 0;
-		int secondFlag = 0;
 		int finalGeneralPrecision = 0;
-		int finalFirstFlagPrecision = 0;
-		int finalSecomdFlagPrecision = 0;
-		HashSet<String> listOfFlag = new HashSet<String>();
-		for (kNNData Object : listOfObjects) {
-			listOfFlag.add(Object.expertFlag);
+
+		ArrayList<String> listOfFlag  = getListOfFlag(listOfObjects);
+		int[] amountOfFlag = getAmountOfFlag(listOfObjects, listOfFlag);
+		
+		System.out.println("Iloœæ flag to: " + listOfFlag.size());
+		System.out.print("Posiadane flagi to: ");
+		for (int i = 0; i < listOfFlag.size(); i++) {
+			System.out.print(listOfFlag.get(i) + "(" + amountOfFlag[i] + ")" + ", ");
 		}
-		System.out.println("Iloœæ flag to: "+listOfFlag.size());
-	
+
 		for (kNNData Object : listOfObjects) {
 			if (Object.expertFlag.equals(Object.knnFlag)) {
 				generalPrecision++;
 			}
 			if (Object.expertFlag.equals("K")) {
-				firstFlag++;
-				
+				// firstFlag++;
+
 			}
 			if (Object.expertFlag.equals("Z")) {
-				secondFlag++;
+				// secondFlag++;
 			}
 			finalGeneralPrecision = (generalPrecision / listOfObjects.length) * 100;
-			finalFirstFlagPrecision = (generalPrecision / listOfObjects.length) * 100;
-			finalSecomdFlagPrecision = (generalPrecision / listOfObjects.length) * 100;
+			// finalFirstFlagPrecision = (generalPrecision /
+			// listOfObjects.length) * 100;
+			// finalSecomdFlagPrecision = (generalPrecision /
+			// listOfObjects.length) * 100;
 		}
 
 		return "Ostateczna, pelna precyzja to: " + finalGeneralPrecision;

@@ -26,13 +26,13 @@ public class Main {
 		System.out.println(testFiles[0].distanceList);
 	
 		System.out.println(testFiles[16].distanceList);
-		for (int k : testFiles[16].closest) {
-			System.out.println("Wartosc najblizsza: " + k);
-			System.out.println("Wartosc flagi eksperckiej: " + testFiles[16].expertFlag);
-			System.out.println("Wartosc flagi kNN: " + testFiles[16].knnFlag);
-			System.out.println(KNNAlgorythm.checkPrecision(testFiles));
-		}
-
+//		for (int k : testFiles[16].closest) {
+//			System.out.println("Wartosc najblizsza: " + k);
+//			System.out.println("Wartosc flagi eksperckiej: " + testFiles[16].expertFlag);
+//			System.out.println("Wartosc flagi kNN: " + testFiles[16].knnFlag);
+//			
+//		}
+		System.out.println(KNNAlgorythm.checkPrecision(testFiles));
 	
 	}
 
