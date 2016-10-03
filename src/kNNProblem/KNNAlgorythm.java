@@ -9,13 +9,9 @@ public class KNNAlgorythm {
 		for (int i = 0; i < listOfObjects.length; i++) {
 			for (int j = 0; j < listOfObjects.length; j++) {
 				if (i == j) {
-					listOfObjects[i].distance[i] = 0;
 					listOfObjects[i].testDistannce.put(null, (double) 0);
 					continue;
 				}
-
-				listOfObjects[i].distance[j] = KNNAlgorythm.calculateEuklidesDistance(listOfObjects[i],
-						listOfObjects[j]);
 				listOfObjects[i].testDistannce.put(j,
 						KNNAlgorythm.calculateEuklidesDistance(listOfObjects[i], listOfObjects[j]));
 			}

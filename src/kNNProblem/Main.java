@@ -11,26 +11,13 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		KNNAlgorythm testVersion = new KNNAlgorythm();
-		String testFile = null;
-		System.out.println("Program will show how good or how bad the kNN Algorythm it is for such a data like IRYS");
-		try {
-			// testFile = FileHelper
-			// .readFile("C:/eclipse-java-neon-1-win32-x86_64/workspace/knnProblem/src/resources/test.txt");
-			testFile = FileHelper.readFile("G:/ProjektyEclipse/kNNProblem/src/resources/test.txt");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		testFile = testFile.replaceAll("\\r", ",");
-		testFile = testFile.replaceAll("\\n", "");
-		System.out.println(testFile);
-		String[] separatedString = testFile.split(",");
+		String[] preparedString = FileHelper.getPreparedFile();
+		kNNData[] testFiles = new kNNData[preparedString.length / 5];
 
-		kNNData[] testFiles = new kNNData[separatedString.length / 3];
-
-		for (int i = 0, j = 0; j < testFiles.length; i += 3, j++) {
-			testFiles[j] = new kNNData(Double.parseDouble(separatedString[i]),
-					Double.parseDouble(separatedString[i + 1]), 0.0, 0.0, separatedString[i + 2], testFiles.length);
+		for (int i = 0, j = 0; j < testFiles.length; i += 5, j++) {
+			testFiles[j] = new kNNData(Double.parseDouble(preparedString[i]), Double.parseDouble(preparedString[i + 1]),
+					Double.parseDouble(preparedString[i + 2]), Double.parseDouble(preparedString[i + 3]),
+					preparedString[i + 4], testFiles.length);
 		}
 
 		testVersion.calculateAllDistancesToTheAllPoints(testFiles);
@@ -44,8 +31,7 @@ public class Main {
 		System.out.println("Map: ");
 
 		System.out.println(testFiles[0].testDistannce);
-		// testFiles[0].testDistannce =
-		// MapUtil.sortByValue(testFiles[0].testDistannce);
+	
 		System.out.println(testFiles[16].testDistannce);
 		for (int k : testFiles[16].closest) {
 			System.out.println("Wartosc najblizsza: " + k);
@@ -54,22 +40,7 @@ public class Main {
 			System.out.println(KNNAlgorythm.checkPrecision(testFiles));
 		}
 
-		// Map<Integer, Double> testDistannce=new TreeMap<Integer, Double>();
-		// testDistannce.put(0, 5.0);
-		// testDistannce.put(3, 2.0);
-		// testDistannce.put(2, 3.0);
-		// testDistannce.put(1, 4.0);
-		// testDistannce.put(5, 1.0);
-		//
-		// System.out.println(testDistannce);
-
-		// for (int z = 0; z < 5; z++)
-		// System.out.println(testFiles[0].closest[z]);
-
-		// System.out.println(testFiles[0].closest[3]);
-
-		// for (kNNData t : testFiles)
-		// System.out.println(t.toString());
+	
 	}
 
 }

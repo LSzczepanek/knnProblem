@@ -9,23 +9,38 @@ public class FileHelper {
 
 	public static String readFile(String fileName) throws IOException {
 		BufferedReader br;
-		
-			br = new BufferedReader(new FileReader(fileName));
 
-			StringBuilder sb = new StringBuilder();
-			String line = br.readLine();
+		br = new BufferedReader(new FileReader(fileName));
 
-			while (line != null) {
-				sb.append(line);
-				sb.append(System.lineSeparator());
-				line = br.readLine();
-			}
-			String everything = sb.toString();
-		
-			br.close();
-			return everything;
-		
+		StringBuilder sb = new StringBuilder();
+		String line = br.readLine();
 
+		while (line != null) {
+			sb.append(line);
+			sb.append(System.lineSeparator());
+			line = br.readLine();
+		}
+		String everything = sb.toString();
+
+		br.close();
+		return everything;
+
+	}
+
+	static String[] getPreparedFile() {
+		String testFile = null;
+		try {
+			// testFile = FileHelper
+			// .readFile("C:/eclipse-java-neon-1-win32-x86_64/workspace/knnProblem/src/resources/test.txt");
+			testFile = FileHelper.readFile("G:/ProjektyEclipse/kNNProblem/src/resources/test.txt");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		testFile = testFile.replaceAll("\\r", ",");
+		testFile = testFile.replaceAll("\\n", "");
+		String[] separatedString = testFile.split(",");
+		return separatedString;
 	}
 
 }
