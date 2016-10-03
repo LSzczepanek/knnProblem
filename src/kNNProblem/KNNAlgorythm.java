@@ -2,7 +2,7 @@ package kNNProblem;
 
 public class KNNAlgorythm {
 
-	double calculateEuklidesDistance( ObjectToUse firstObject, ObjectToUse secondObject){
+	double calculateEuklidesDistance( kNNData firstObject, kNNData secondObject){
 		
 		return 0;
 	}

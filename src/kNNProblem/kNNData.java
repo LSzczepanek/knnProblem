@@ -1,6 +1,6 @@
 package kNNProblem;
 
-public class ObjectToUse {
+public class kNNData {
 
 	public double A;
 	public double B;
@@ -10,11 +10,11 @@ public class ObjectToUse {
 	public String knnFlag;
 	public double[] distance;
 	
-	public ObjectToUse(){
+	public kNNData(){
 		
 	}
 
-	public ObjectToUse(double A, double B, double C, double D, String expertFlag) {
+	public kNNData(double A, double B, double C, double D, String expertFlag) {
 		this.A = A;
 		this.B = B;
 		this.C = C;

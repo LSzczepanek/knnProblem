@@ -20,7 +20,7 @@ public class Main {
 		System.out.println(testFile);
 		String[] separatedString = testFile.split(",");
 		
-		ObjectToUse[] testFiles = new ObjectToUse[separatedString.length/3];
+		kNNData[] testFiles = new kNNData[separatedString.length/3];
 		
 		//testFiles[0] = new ObjectToUse();
 		
@@ -28,14 +28,14 @@ public class Main {
 //		System.out.println(separatedString2[1]);
 //		System.out.println(separatedString2[2]);
 		for (int i=0 , j=0; j <testFiles.length; i+=3, j++) {
-			testFiles[j] = new ObjectToUse(Double.parseDouble(separatedString[i]),
+			testFiles[j] = new kNNData(Double.parseDouble(separatedString[i]),
 					Double.parseDouble(separatedString[i+1]), 
 					0.0, 
 					0.0, 
 					separatedString[i+2]);
 		}
 		
-		for (ObjectToUse t : testFiles)
+		for (kNNData t : testFiles)
 		System.out.println(t.toString());
 	}
 
