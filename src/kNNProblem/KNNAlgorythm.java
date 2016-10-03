@@ -1,6 +1,7 @@
 package kNNProblem;
 
 import java.util.Arrays;
+import java.util.Map;
 
 public class KNNAlgorythm {
 
@@ -9,13 +10,16 @@ public class KNNAlgorythm {
 			for (int j = 0; j < listOfObjects.length; j++) {
 				if (i == j) {
 					listOfObjects[i].distance[i] = 0;
+					listOfObjects[i].testDistannce.put(null, (double) 0);
 					continue;
 				}
 
 				listOfObjects[i].distance[j] = KNNAlgorythm.calculateEuklidesDistance(listOfObjects[i],
 						listOfObjects[j]);
+				listOfObjects[i].testDistannce.put(j,
+						KNNAlgorythm.calculateEuklidesDistance(listOfObjects[i], listOfObjects[j]));
 			}
-			listOfObjects[i].closest = getThreeLowest(listOfObjects[i].distance);
+			getLowestforObject(listOfObjects[i], 3);
 		}
 
 	}
@@ -30,16 +34,24 @@ public class KNNAlgorythm {
 		return Math.sqrt(sum);
 	}
 
-	private static double[] getThreeLowest(double[] distance) {
-		double[] lowestValues = new double[5];
-		Arrays.fill(lowestValues, Integer.MAX_VALUE);
-
-		for (double n : distance) {
-			if (n < lowestValues[2]) {
-				lowestValues[2] = n;
-				Arrays.sort(lowestValues);
+	private void getLowestforObject(kNNData Objects, int kValue) {
+		int testValueToBreak = 0;
+		int valueForClosest = 0;
+		Objects.closest = new int[kValue];
+		Objects.testDistannce = MapUtil.sortByValue(Objects.testDistannce);
+		for (Map.Entry entry : (Objects.testDistannce.entrySet())) {
+			if (testValueToBreak == kValue) {
+				break;
 			}
+			if(entry.getKey() == null){
+				continue;
+			}
+			else {
+				Objects.closest[valueForClosest] = (int) entry.getKey();
+				valueForClosest++;
+			}
+			//System.out.println(entry.getKey() + ", " + entry.getValue());
+			testValueToBreak++;
 		}
-		return lowestValues;
 	}
 }

@@ -1,5 +1,8 @@
 package kNNProblem;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 public class kNNData {
 
 	public double A;
@@ -9,7 +12,8 @@ public class kNNData {
 	public String expertFlag;
 	public String knnFlag;
 	public double[] distance;
-	public double[] closest;
+	Map<Integer, Double> testDistannce;
+	public int[] closest;
 	
 	public kNNData(){
 		
@@ -22,6 +26,7 @@ public class kNNData {
 		this.D = D;
 		this.expertFlag = expertFlag;
 		this.distance = new double[sizeOfTable];
+		testDistannce = new LinkedHashMap<Integer, Double>();
 	}
 	
 	void calculateDistance(){
