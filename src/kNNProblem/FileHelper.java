@@ -1,14 +1,13 @@
 package kNNProblem;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
 public class FileHelper {
 
 	static int AMOUNT_OF_PARAMETERS;
-	public static String readFile(String fileName) throws IOException {
+	private static String readFile(String fileName) throws IOException {
 		BufferedReader br;
 
 		br = new BufferedReader(new FileReader(fileName));
@@ -35,7 +34,6 @@ public class FileHelper {
 //			 .readFile("C:/eclipse-java-neon-1-win32-x86_64/workspace/knnProblem/src/resources/test2.txt");
 			testFile = FileHelper.readFile("G:/ProjektyEclipse/kNNProblem/src/resources/dane.txt");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		String [] amountOfObjects = testFile.split("\\n");

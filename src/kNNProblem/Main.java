@@ -1,7 +1,5 @@
 package kNNProblem;
 
-import java.text.DecimalFormat;
-
 public class Main {
 
 	public static void main(String[] args) {
@@ -18,14 +16,8 @@ public class Main {
 					Double.parseDouble(preparedString[i + 2]), Double.parseDouble(preparedString[i + 3]),
 					preparedString[i + 4], testFiles.length);
 		}
+		KNNAlgorythm.calculateAllDistancesToTheAllPoints(testFiles, kValue);
 
-		testVersion.calculateAllDistancesToTheAllPoints(testFiles, kValue);
-		// System.out.println("Table:");
-		// System.out.println(testFiles[0].distance.length);
-		// for (double n : testFiles[0].distance) {
-		// System.out.println(++i + ". : " + n);
-		//
-		// }
 		System.out.println("Map: ");
 		for (kNNData object : testFiles) {
 			System.out.println(object);
@@ -40,7 +32,7 @@ public class Main {
 
 			}
 		}
-		System.out.println(KNNAlgorythm.checkPrecision(testFiles));
+		System.out.println(KNNAlgorythm.checkAccuracy(testFiles, kValue));
 		
 	}
 

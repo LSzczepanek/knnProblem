@@ -55,7 +55,6 @@ public class kNNData {
 		System.out.println("Flaga " + listOfFlag.get(0) + ":" + flags[0]);
 		System.out.println("Flaga " + listOfFlag.get(1) + ":" + flags[1]);
 
-		// Need Change to way how the flas is assigned
 		for (int i = 0; i < listOfFlag.size(); i++) {
 			System.out.println("Ilosc danej flagi: " + flags[i]);
 			sumFlags[i] = (double) ((flags[i] / (double) listOfTheClosestObjects.length) * 100);
@@ -67,10 +66,6 @@ public class kNNData {
 			if (sumFlags[i] > 50) {
 				System.out.println("Suma dla flagi: " + listOfFlag.get(i) + " to " + sumFlags[i]);
 				this.knnFlag = new String(listOfFlag.get(i));
-				// } else if (sumFlags[1] > 50) {
-				// System.out.println("Suma dla flagi: " + listOfFlag.get(1) + "
-				// to " + sumFlags[1]);
-				// this.knnFlag = new String(listOfFlag.get(1));
 			} else if (this.knnFlag == null) {
 				this.knnFlag = "Nie do okreslenia";
 
