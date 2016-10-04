@@ -15,25 +15,28 @@ public class Main {
 		}
 
 		testVersion.calculateAllDistancesToTheAllPoints(testFiles);
-//		System.out.println("Table:");
-//		System.out.println(testFiles[0].distance.length);
-//		for (double n : testFiles[0].distance) {
-//			System.out.println(++i + ". : " + n);
-//
-//		}
+		// System.out.println("Table:");
+		// System.out.println(testFiles[0].distance.length);
+		// for (double n : testFiles[0].distance) {
+		// System.out.println(++i + ". : " + n);
+		//
+		// }
 		System.out.println("Map: ");
+		for (kNNData object : testFiles) {
+			System.out.println(object);
+		}
 
-		System.out.println(testFiles[0].distanceList);
-	
-		System.out.println(testFiles[16].distanceList);
-//		for (int k : testFiles[16].closest) {
-//			System.out.println("Wartosc najblizsza: " + k);
-//			System.out.println("Wartosc flagi eksperckiej: " + testFiles[16].expertFlag);
-//			System.out.println("Wartosc flagi kNN: " + testFiles[16].knnFlag);
-//			
-//		}
+		System.out.println(testFiles[1].distanceList);
+		for (int i = 0; i < testFiles.length; i++) {
+			for (int k : testFiles[i].closest) {
+				System.out.println(i+".Wartosc najblizsza: " + k);
+				System.out.println(i+".Wartosc flagi eksperckiej: " + testFiles[i].expertFlag);
+				System.out.println(i+".Wartosc flagi kNN: " + testFiles[i].knnFlag);
+
+			}
+		}
 		System.out.println(KNNAlgorythm.checkPrecision(testFiles));
-	
+
 	}
 
 }

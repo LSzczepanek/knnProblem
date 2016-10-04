@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.Map;
 
 public class KNNAlgorythm {
+	
+	static ArrayList<String> listOfFlag;
 
 	public void calculateAllDistancesToTheAllPoints(kNNData[] listOfObjects) {
 		for (int i = 0; i < listOfObjects.length; i++) {
@@ -17,7 +19,11 @@ public class KNNAlgorythm {
 						KNNAlgorythm.calculateEuklidesDistance(listOfObjects[i], listOfObjects[j]));
 			}
 			getLowestforObject(listOfObjects[i], 3);
-			listOfObjects[i].giveFlag(listOfObjects);
+			
+		}
+		
+		for (int i = 0; i < listOfObjects.length; i++){
+			listOfObjects[i].giveFlag(listOfObjects, getListOfFlag(listOfObjects));
 		}
 
 	}
@@ -32,19 +38,25 @@ public class KNNAlgorythm {
 		return Math.sqrt(sum);
 	}
 
-	private void getLowestforObject(kNNData Objects, int kValue) {
+	private void getLowestforObject(kNNData object, int kValue) {
 		int testValueToBreak = 0;
 		int valueForClosest = 0;
-		Objects.closest = new int[kValue];
-		Objects.distanceList = MapUtil.sortByValue(Objects.distanceList);
-		for (Map.Entry entry : (Objects.distanceList.entrySet())) {
+		object.closest = new int[kValue];
+		System.out.println("before: ");
+		System.out.println(object.distanceList);
+		Map<Integer, Double> sortedDistanceList = MapUtil.sortByValue(object.distanceList);
+		System.out.println("after sort old object: ");
+		System.out.println(object.distanceList);
+		System.out.println("after sort new object: ");
+		System.out.println(sortedDistanceList);
+		for (Map.Entry entry : (sortedDistanceList.entrySet())) {
 			if (testValueToBreak == kValue) {
 				break;
 			}
 			if (entry.getKey() == null) {
 				continue;
 			} else {
-				Objects.closest[valueForClosest] = (int) entry.getKey();
+				object.closest[valueForClosest] = (int) entry.getKey();
 				valueForClosest++;
 			}
 			// System.out.println(entry.getKey() + ", " + entry.getValue());
@@ -62,7 +74,7 @@ public class KNNAlgorythm {
 			getTheFlags.add(Object.expertFlag);
 		}
 
-		ArrayList<String> listOfFlag = new ArrayList<>(getTheFlags);
+		listOfFlag = new ArrayList<>(getTheFlags);
 		
 
 		
@@ -89,12 +101,12 @@ public class KNNAlgorythm {
 	static String checkPrecision(kNNData[] listOfObjects) {
 
 		int generalPrecision = 0;
-		int finalGeneralPrecision = 0;
+		double finalGeneralPrecision = 0;
 
 		ArrayList<String> listOfFlag  = getListOfFlag(listOfObjects);
 		int[] amountOfFlag = getAmountOfFlag(listOfObjects, listOfFlag);
 		
-		System.out.println("Iloœæ flag to: " + listOfFlag.size());
+		System.out.println("Ilosc flag to: " + listOfFlag.size());
 		System.out.print("Posiadane flagi to: ");
 		for (int i = 0; i < listOfFlag.size(); i++) {
 			System.out.print(listOfFlag.get(i) + "(" + amountOfFlag[i] + ")" + ", ");
@@ -111,7 +123,7 @@ public class KNNAlgorythm {
 			if (Object.expertFlag.equals("Z")) {
 				// secondFlag++;
 			}
-			finalGeneralPrecision = (generalPrecision / listOfObjects.length) * 100;
+			finalGeneralPrecision = (double) (generalPrecision / listOfObjects.length) * 100;
 			// finalFirstFlagPrecision = (generalPrecision /
 			// listOfObjects.length) * 100;
 			// finalSecomdFlagPrecision = (generalPrecision /
