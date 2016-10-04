@@ -12,9 +12,8 @@ public class kNNData {
 	public double D;
 	public String expertFlag;
 	public String knnFlag;
-	// public double[] distance;
 	Map<Integer, Double> distanceList;
-	public int[] closest;
+	public int[] listOfTheClosestObjects;
 
 	public kNNData() {
 
@@ -44,9 +43,9 @@ public class kNNData {
 		double[] sumFlags = new double[listOfFlag.size()];
 
 		for (int j = 0; j < listOfFlag.size(); j++) {
-			for (int i = 0; i < closest.length; i++) {
-				System.out.println("Nr indeksu closest: " + closest[i]);
-				if (listOfFlag.get(j).equals(Objects[this.closest[i]].expertFlag)) {
+			for (int i = 0; i < listOfTheClosestObjects.length; i++) {
+				System.out.println("Nr indeksu closest: " + listOfTheClosestObjects[i]);
+				if (listOfFlag.get(j).equals(Objects[this.listOfTheClosestObjects[i]].expertFlag)) {
 					flags[j] += 1;
 				}
 
@@ -59,7 +58,7 @@ public class kNNData {
 		// Need Change to way how the flas is assigned
 		for (int i = 0; i < listOfFlag.size(); i++) {
 			System.out.println("Ilosc danej flagi: " + flags[i]);
-			sumFlags[i] = (double) ((flags[i] / (double) closest.length) * 100);
+			sumFlags[i] = (double) ((flags[i] / (double) listOfTheClosestObjects.length) * 100);
 			System.out.println("Flaga policzona: " + sumFlags[i]);
 		}
 		System.out.println("Suma Flagi 0: " + sumFlags[0]);
