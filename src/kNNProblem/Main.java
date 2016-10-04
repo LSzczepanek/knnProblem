@@ -14,7 +14,7 @@ public class Main {
 					preparedString[i + 4], testFiles.length);
 		}
 
-		testVersion.calculateAllDistancesToTheAllPoints(testFiles);
+		testVersion.calculateAllDistancesToTheAllPoints(testFiles, 3);
 		// System.out.println("Table:");
 		// System.out.println(testFiles[0].distance.length);
 		// for (double n : testFiles[0].distance) {
@@ -36,7 +36,7 @@ public class Main {
 			}
 		}
 		System.out.println(KNNAlgorythm.checkPrecision(testFiles));
-
+		
 	}
 
 }

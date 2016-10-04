@@ -8,7 +8,7 @@ public class KNNAlgorythm {
 	
 	static ArrayList<String> listOfFlag;
 
-	public void calculateAllDistancesToTheAllPoints(kNNData[] listOfObjects) {
+	public void calculateAllDistancesToTheAllPoints(kNNData[] listOfObjects, int kValue) {
 		for (int i = 0; i < listOfObjects.length; i++) {
 			for (int j = 0; j < listOfObjects.length; j++) {
 				if (i == j) {
@@ -18,7 +18,8 @@ public class KNNAlgorythm {
 				listOfObjects[i].distanceList.put(j,
 						KNNAlgorythm.calculateEuklidesDistance(listOfObjects[i], listOfObjects[j]));
 			}
-			getLowestforObject(listOfObjects[i], 3);
+			System.out.println("Obiekt nr: "+i);
+			getLowestforObject(listOfObjects[i], kValue);
 			
 		}
 		
