@@ -30,9 +30,9 @@ public class FileHelper {
 	static String[] getPreparedFile() {
 		String testFile = null;
 		try {
-//			 testFile = FileHelper
-//			 .readFile("C:/eclipse-java-neon-1-win32-x86_64/workspace/knnProblem/src/resources/test2.txt");
-			testFile = FileHelper.readFile("G:/ProjektyEclipse/kNNProblem/src/resources/dane.txt");
+			 testFile = FileHelper
+			 .readFile("C:/eclipse-java-neon-1-win32-x86_64/workspace/knnProblem/src/resources/test2.txt");
+//			testFile = FileHelper.readFile("G:/ProjektyEclipse/kNNProblem/src/resources/dane.txt");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

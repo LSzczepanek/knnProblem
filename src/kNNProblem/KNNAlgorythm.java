@@ -43,8 +43,17 @@ public class KNNAlgorythm {
 	private static void getLowestforObject(kNNData object, int kValue) {
 		int testValueToBreak = 0;
 		int valueForClosest = 0;
+
+		System.out.println("before: ");
+		System.out.println(object.distanceList);
+		
 		object.listOfTheClosestObjects = new int[kValue];
 		Map<Integer, Double> sortedDistanceList = MapUtil.sortByValue(object.distanceList);
+		
+		System.out.println("after sort old object: ");
+		System.out.println(object.distanceList);
+		System.out.println("after sort new object: ");
+		System.out.println(sortedDistanceList);
 		for (@SuppressWarnings("rawtypes")
 		Map.Entry entry : (sortedDistanceList.entrySet())) {
 			if (testValueToBreak == kValue) {
