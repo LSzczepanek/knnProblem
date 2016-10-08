@@ -4,10 +4,10 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		KNNAlgorythm testVersion = new KNNAlgorythm();
+		//KNNAlgorythm testVersion = new KNNAlgorythm();
 		String[] preparedString = FileHelper.getPreparedFile();
 		kNNData[] testFiles = new kNNData[preparedString.length / FileHelper.AMOUNT_OF_PARAMETERS];
-		int kValue = 5;
+		int kValue = 3;
 		
 		System.out.println("Liczba argumentow to: "+ FileHelper.AMOUNT_OF_PARAMETERS);
 
@@ -32,7 +32,7 @@ public class Main {
 
 			}
 		}
-		System.out.println(KNNAlgorythm.checkAccuracy(testFiles, kValue));
+		System.out.println(KNNAlgorythm.checkAccuracyAndPrecision(testFiles, kValue));
 		
 	}
 

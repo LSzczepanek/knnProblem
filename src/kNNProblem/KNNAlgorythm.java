@@ -96,7 +96,7 @@ public class KNNAlgorythm {
 		return amountOfFlag;
 	}
 
-	static String checkAccuracy(kNNData[] listOfObjects, int kValue) {
+	static String checkAccuracyAndPrecision(kNNData[] listOfObjects, int kValue) {
 
 		int generalAccuracy = 0;
 		double finalGeneralAccuracy = 0;
