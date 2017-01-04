@@ -19,9 +19,7 @@ public class KNNAlgorythm {
 				listOfObjects[i].distanceList.put(j,
 						KNNAlgorythm.calculateEuklidesDistance(listOfObjects[i], listOfObjects[j]));
 			}
-			System.out.println("Obiekt nr: " + i);
 			getLowestforObject(listOfObjects[i], kValue);
-
 		}
 
 		for (int i = 0; i < listOfObjects.length; i++) {
@@ -44,16 +42,9 @@ public class KNNAlgorythm {
 		int testValueToBreak = 0;
 		int valueForClosest = 0;
 
-		System.out.println("before: ");
-		System.out.println(object.distanceList);
-		
 		object.listOfTheClosestObjects = new int[kValue];
 		Map<Integer, Double> sortedDistanceList = MapUtil.sortByValue(object.distanceList);
-		
-		System.out.println("after sort old object: ");
-		System.out.println(object.distanceList);
-		System.out.println("after sort new object: ");
-		System.out.println(sortedDistanceList);
+
 		for (@SuppressWarnings("rawtypes")
 		Map.Entry entry : (sortedDistanceList.entrySet())) {
 			if (testValueToBreak == kValue) {
@@ -65,7 +56,6 @@ public class KNNAlgorythm {
 				object.listOfTheClosestObjects[valueForClosest] = (int) entry.getKey();
 				valueForClosest++;
 			}
-			// System.out.println(entry.getKey() + ", " + entry.getValue());
 			testValueToBreak++;
 		}
 	}
@@ -99,12 +89,19 @@ public class KNNAlgorythm {
 	static String checkAccuracyAndPrecision(kNNData[] listOfObjects, int kValue) {
 
 		int generalAccuracy = 0;
+		int generalTP = 0;
+		int generalFP = 0;
 		double finalGeneralAccuracy = 0;
+		double finalGeneralPrecision = 0;
+		
 
 		ArrayList<String> listOfFlag = getListOfFlag(listOfObjects);
 		int[] amountOfFlag = getAmountOfFlag(listOfObjects, listOfFlag);
-		int[] hitOfFlag = new int[listOfFlag.size()];
+		int[] tp = new int[listOfFlag.size()];
+		int[] tn = new int[listOfFlag.size()];
+		int[] fp = new int[listOfFlag.size()];
 		double[] finalFlagAccuracy = new double[listOfFlag.size()];
+		double[] finalFlagPrecision = new double[listOfFlag.size()];
 
 		System.out.println("Ilosc flag to: " + listOfFlag.size());
 		System.out.print("Posiadane flagi to: ");
@@ -118,22 +115,39 @@ public class KNNAlgorythm {
 				if (Object.expertFlag.equals(Object.knnFlag)) {
 					generalAccuracy++;
 				}
-				if (Object.expertFlag.equals(Object.knnFlag) && Object.expertFlag.equals(listOfFlag.get(i))) {
-					hitOfFlag[i] += 1;
+				if (Object.expertFlag.equals(Object.knnFlag) && Object.expertFlag.equals(listOfFlag.get(i))
+						&& Object.knnFlag.equals(listOfFlag.get(i))) {
+					tp[i] += 1;
+					generalTP += 1;
+				}
+				if (!(Object.knnFlag.equals(listOfFlag.get(i))) && !(Object.expertFlag.equals(listOfFlag.get(i)))) {
+					tn[i] += 1;
+				}
+				if (Object.knnFlag.equals(listOfFlag.get(i)) && !(Object.expertFlag.equals(listOfFlag.get(i)))) {
+					fp[i] += 1;
+					generalFP += 1;
 				}
 			}
 		}
 
 		for (int i = 0; i < listOfFlag.size(); i++) {
-			finalFlagAccuracy[i] = ((double) hitOfFlag[i] / amountOfFlag[i]) * 100;
+			finalFlagAccuracy[i] = ((tp[i] + tn[i]) / (double) listOfObjects.length) * 100;
+			finalFlagPrecision[i] = ((double) tp[i] / (tp[i] + fp[i])) * 100;
 		}
 		finalGeneralAccuracy = ((double) generalAccuracy / listOfObjects.length) * 100;
+		finalGeneralPrecision = ((double) generalTP / (generalTP + generalFP)) * 100;
 
 		DecimalFormat df2 = new DecimalFormat(".##");
-		String result = "\nOstateczna, ogolna dokladnosc dla k=" + kValue + " to: " + df2.format(finalGeneralAccuracy);
+		String result = "\nOstateczna, ogolna dokladnosc dla k=" + kValue + " to: " + df2.format(finalGeneralAccuracy)+
+				"\nZas ogolna precyzja wynosi: "+df2.format(finalGeneralPrecision);
 		for (int i = 0; i < listOfFlag.size(); i++) {
-			result += ", dokladnosc dla flagi " + listOfFlag.get(i) + ": " + df2.format(finalFlagAccuracy[i]);
-		}
+			result += "\n\nDokladnosc dla flagi " + listOfFlag.get(i) + ": " + df2.format(finalFlagAccuracy[i]);
+			result += "\nPrecyzja dla flagi " + listOfFlag.get(i) + ": " + df2.format(finalFlagPrecision[i]);
+			result += "\nTP dla flagi= "+tp[i];
+			result += "\nFP dla flagi= "+fp[i];
+			result += "\nTN dla flagi= "+tn[i];
+			result += "\nFN dla flagi= "+(listOfObjects.length-tp[i]-fp[i]-tn[i]);
+			}
 
 		return result;
 

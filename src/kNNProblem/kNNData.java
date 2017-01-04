@@ -25,7 +25,6 @@ public class kNNData {
 		this.C = C;
 		this.D = D;
 		this.expertFlag = expertFlag;
-		// this.distance = new double[sizeOfTable];
 		distanceList = new LinkedHashMap<Integer, Double>();
 	}
 
@@ -44,7 +43,6 @@ public class kNNData {
 
 		for (int j = 0; j < listOfFlag.size(); j++) {
 			for (int i = 0; i < listOfTheClosestObjects.length; i++) {
-				System.out.println("Nr indeksu closest: " + listOfTheClosestObjects[i]);
 				if (listOfFlag.get(j).equals(Objects[this.listOfTheClosestObjects[i]].expertFlag)) {
 					flags[j] += 1;
 				}
@@ -52,19 +50,11 @@ public class kNNData {
 			}
 		}
 
-		System.out.println("Flaga " + listOfFlag.get(0) + ":" + flags[0]);
-		System.out.println("Flaga " + listOfFlag.get(1) + ":" + flags[1]);
-
 		for (int i = 0; i < listOfFlag.size(); i++) {
-			System.out.println("Ilosc danej flagi: " + flags[i]);
 			sumFlags[i] = (double) ((flags[i] / (double) listOfTheClosestObjects.length) * 100);
-			System.out.println("Flaga policzona: " + sumFlags[i]);
 		}
-		System.out.println("Suma Flagi 0: " + sumFlags[0]);
-		System.out.println("Suma Flagi 1: " + sumFlags[1]);
 		for (int i = 0; i < listOfFlag.size(); i++) {
 			if (sumFlags[i] > 50) {
-				System.out.println("Suma dla flagi: " + listOfFlag.get(i) + " to " + sumFlags[i]);
 				this.knnFlag = new String(listOfFlag.get(i));
 			} else if (this.knnFlag == null) {
 				this.knnFlag = "Nie do okreslenia";
